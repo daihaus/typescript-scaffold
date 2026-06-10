@@ -7,7 +7,6 @@
     "source.organizeImports": "explicit"
   },
   "editor.formatOnSave": true,
-  "eslint.useFlatConfig": true,
   "files.associations": {
     "*.mdx": "mdx"
   },
@@ -27,8 +26,11 @@
   "[mdx]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[javascript][typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[markdown][json][jsonc][yaml][css][scss][less][html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript][typescript][javascriptreact][typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.tabSize": 2
   },
   "[python]": {
