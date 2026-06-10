@@ -13,6 +13,10 @@ export const commonIgnorePatterns = [
   "**/*.d.ts",
   "**/*.d.mts",
   "**/*.d.cts",
+  // Python artifacts — flat config ignores neither .gitignore entries nor dot-dirs
+  "**/.venv/",
+  "**/__pycache__/",
+  "**/.ruff_cache/",
 ];
 /**
  * Create language options config for TypeScript files
