@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  // Mirrors the Prettier config in .prettierrc.mjs for the JS/TS family
+  "printWidth": 96,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": false,
+  "quoteProps": "as-needed",
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "insertFinalNewline": true,
+  // oxfmt owns only the JS/TS family; Prettier formats the other types it supports
+  // (see the prettier globs in package.json scripts), ruff formats Python, and
+  // toml/svelte/mjml are deliberately unformatted at the CLI (toml is editor-only)
+  "ignorePatterns": [
+    "**/*.{json,jsonc,json5,yaml,yml,toml,md,mdx,markdown,mdown,mkd,css,scss,less,html,htm,xht,xhtml,vue,svelte,graphql,gql,graphqls,hbs,handlebars,mjml}",
+  ],
+}
