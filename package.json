@@ -4,20 +4,23 @@
     "node": ">=22.22.1"
   },
   "scripts": {
-    "format": "prettier --write --ignore-unknown --log-level=warn . && autocorrect --fix .",
-    "lint": "eslint . --no-error-on-unmatched-pattern && pnpm run --filter '*' lint && prettier --check --ignore-unknown .",
-    "lint:staged": "lint-staged",
-    "lint:fix": "eslint . --no-error-on-unmatched-pattern --fix && pnpm run --filter '*' lint:fix && pnpm run format",
+    "format": "prettier --write --ignore-unknown --log-level=warn . && uv run --locked ruff format . && autocorrect --fix .",
+    "lint": "pnpm run lint:js && pnpm run lint:py && pnpm run lint:text",
+    "lint:js": "eslint . --no-error-on-unmatched-pattern && pnpm -r run --if-present lint && prettier --check --ignore-unknown .",
+    "lint:py": "uv run --locked ruff check . && uv run --locked ruff format --check .",
+    "lint:text": "autocorrect --lint .",
+    "lint:staged": "lint-staged --concurrent false",
+    "lint:fix": "eslint . --no-error-on-unmatched-pattern --fix && pnpm -r run --if-present lint:fix && uv run --locked ruff check --fix . && pnpm run format",
     "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "autocorrect-node": "^2.14.0",
     "eslint": "^10.4.1",
     "globals": "^17.6.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.7",
-    "prettier": "^3.8.3",
-    "typescript-eslint": "^8.60.1"
+    "prettier": "^3.8.4",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.61.0"
   }
 }

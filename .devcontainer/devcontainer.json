@@ -27,7 +27,7 @@
     // "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
     // "ghcr.io/devcontainers/features/dotnet:1": {},
     "ghcr.io/devcontainers/features/git:1": {},
-    // "ghcr.io/devcontainers/features/git-lfs:1": {},
+    "ghcr.io/devcontainers/features/git-lfs:1": {},
     // "ghcr.io/devcontainers/features/github-cli:1": {},
     // "ghcr.io/devcontainers/features/go:1": {},
     // "ghcr.io/dhoeric/features/google-cloud-cli:1": {},
@@ -60,20 +60,16 @@
     "vscode": {
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
+        "charliermarsh.ruff",
         "dbaeumer.vscode-eslint",
         // "eg2.vscode-npm-script",
         "esbenp.prettier-vscode",
         // "GitHub.copilot",
         "huacnlee.autocorrect",
         "ms-playwright.playwright",
-        // "ms-python.python",
-        // "ms-python.pylint",
-        // "ms-python.flake8",
-        // "ms-python.autopep8",
-        // "ms-python.black-formatter",
-        // "ms-python.isort",
-        // "ms-python.vscode-pylance",
+        "ms-python.python",
         "MS-vsliveshare.vsliveshare-pack",
+        "tamasfe.even-better-toml",
         "unifiedjs.vscode-mdx"
       ],
       // Set *default* container specific settings.json values on container create.
@@ -85,7 +81,9 @@
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "pip install -U pip && pip install -r requirements.txt",
+  // mise installs pnpm, uv, and AutoCorrect; uv manages Python itself (from .python-version).
+  // The guarded echos activate mise in interactive shells so the tools are on PATH.
+  "postCreateCommand": "curl https://mise.run | MISE_VERSION=v2026.6.1 sh && ~/.local/bin/mise trust && ~/.local/bin/mise run setup && { grep -qsF 'mise activate zsh' ~/.zshrc || echo 'eval \"$(~/.local/bin/mise activate zsh)\"' >> ~/.zshrc; } && { grep -qsF 'mise activate bash' ~/.bashrc || echo 'eval \"$(~/.local/bin/mise activate bash)\"' >> ~/.bashrc; }",
   // Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "vscode"
 }

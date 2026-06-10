@@ -1,6 +1,8 @@
 export default {
   // Eslint for TypeScript files
   "**/*.{ts,tsx}": ["pnpm exec eslint --fix"],
-  // Prettier and Autocorrect for all files
-  "**/*": ["pnpm exec prettier --write --ignore-unknown", "pnpm exec autocorrect --fix"],
+  // Ruff for Python files
+  "**/*.py": ["uv run --locked ruff check --fix", "uv run --locked ruff format"],
+  // Prettier and Autocorrect for all files (autocorrect is mise-managed, on PATH)
+  "**/*": ["pnpm exec prettier --write --ignore-unknown", "autocorrect --fix"],
 };

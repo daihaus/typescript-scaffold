@@ -2,12 +2,27 @@
 node_modules
 **/node_modules
 
+# Virtual environments
+.venv
+
 # Build outputs
 artifacts
 build
 coverage
 dist
+wheels
 *.tsbuildinfo
+*.egg-info
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+
+# Caches
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
 
 # Logs
 *.log

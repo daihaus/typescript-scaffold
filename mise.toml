@@ -1,0 +1,20 @@
+# mise — unified dev tool manager (https://mise.jdx.dev)
+# Install: curl https://mise.run | sh
+# Then run: mise run setup
+
+[tools]
+node = "24"
+pnpm = "11"
+uv = "0.11"
+
+# AutoCorrect for CJK copywriting, installed from GitHub releases
+# (the npm package lacks linux-arm64 binaries, so it is managed here instead)
+"ubi:huacnlee/autocorrect" = "2.16"
+
+[tasks]
+# Install all tools, JS dependencies, and Python dependencies
+setup = ["mise install", "pnpm install", "uv sync --locked"]
+# Run all lint checks (TypeScript, Python, copywriting)
+lint = ["pnpm run lint"]
+# Run all formatters
+format = ["pnpm run format"]

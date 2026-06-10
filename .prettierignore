@@ -3,6 +3,17 @@ node_modules
 **/node_modules
 pnpm-lock.yaml
 
+# Python (formatted by ruff)
+*.py
+.venv
+__pycache__
+uv.lock
+
+# Tool caches
+.mypy_cache
+.pytest_cache
+.ruff_cache
+
 # Build outputs
 dist
 build
