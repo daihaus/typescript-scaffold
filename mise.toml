@@ -13,7 +13,7 @@ uv = "0.11"
 
 [tasks]
 # Install all tools, JS dependencies, and Python dependencies
-setup = ["mise install", "pnpm install", "uv sync"]
+setup = ["mise install", "pnpm install", "uv sync --locked"]
 # Run all lint checks (TypeScript, Python, copywriting)
 lint = ["pnpm run lint"]
 # Run all formatters

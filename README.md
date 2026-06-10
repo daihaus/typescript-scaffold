@@ -72,7 +72,7 @@ Or manually, with Node.js, pnpm, uv, and
 
 ```sh
 pnpm install
-uv sync
+uv sync --locked
 ```
 
 ## Commands
