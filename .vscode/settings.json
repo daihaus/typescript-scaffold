@@ -26,7 +26,7 @@
   "[mdx]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[markdown][json][jsonc][yaml][css][scss][less][html]": {
+  "[markdown][json][jsonc][yaml][css][scss][less][html][vue][graphql][handlebars]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript][typescript][javascriptreact][typescriptreact]": {
