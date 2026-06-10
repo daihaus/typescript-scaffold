@@ -5,11 +5,11 @@
 [tools]
 node = "24"
 pnpm = "11"
-uv = "latest"
+uv = "0.11"
 
 # AutoCorrect for CJK copywriting, installed from GitHub releases
 # (the npm package lacks linux-arm64 binaries, so it is managed here instead)
-"ubi:huacnlee/autocorrect" = "latest"
+"ubi:huacnlee/autocorrect" = "2.16"
 
 [tasks]
 # Install all tools, JS dependencies, and Python dependencies
