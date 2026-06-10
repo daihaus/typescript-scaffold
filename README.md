@@ -12,7 +12,8 @@ checks, CI, and editor/devcontainer hints.
 Shared:
 
 - mise config for unified tool management (Node.js, pnpm, uv, AutoCorrect)
-- Prettier formatting for TS/JS, Markdown, JSON, and YAML
+- Prettier formatting for docs and config file types (Markdown, JSON, YAML, HTML,
+  CSS, Vue, GraphQL, and more — see the globs in `package.json`)
 - AutoCorrect CJK copywriting cleanup
 - Husky pre-commit and pre-push hooks with lint-staged
 - GitHub Actions lint and AI code-review workflows
@@ -22,7 +23,10 @@ TypeScript:
 
 - pnpm workspace over `apps/*` and `packages/*`
 - Strict `tsconfig.json` defaults
-- Reusable ESLint flat config (type-aware `typescript-eslint`)
+- [Oxlint](https://oxc.rs/docs/guide/usage/linter) with type-aware rules
+  (`oxlint-tsgolint`) — one root `.oxlintrc.json` lints the whole monorepo
+- [Oxfmt](https://oxc.rs/docs/guide/usage/formatter) formatting for the JS/TS family
+  (Prettier-compatible output, configured in `.oxfmtrc.jsonc`)
 
 Python:
 
@@ -77,13 +81,13 @@ uv sync --locked
 
 ## Commands
 
-Format files (Prettier + Ruff + AutoCorrect):
+Format files (Oxfmt + Prettier + Ruff + AutoCorrect):
 
 ```sh
 pnpm run format
 ```
 
-Run all lint checks (ESLint + Prettier, Ruff, AutoCorrect):
+Run all lint checks (Oxlint + Oxfmt + Prettier, Ruff, AutoCorrect):
 
 ```sh
 pnpm run lint
@@ -111,10 +115,11 @@ A TypeScript package:
 mkdir -p packages/my-lib && cd packages/my-lib && pnpm init
 ```
 
-Give it an `eslint.config.mjs` that imports `baseConfig` and `createTypeScriptConfig` from
-the root `eslint.config.mjs`, a `tsconfig.json` extending the root one, and `lint` /
-`lint:fix` scripts (e.g. `eslint .`) — the root `pnpm run lint` runs them across all
-workspace packages via `pnpm -r run lint`.
+Give it a `tsconfig.json` extending the root one. The root `pnpm run lint` already lints
+every workspace file with Oxlint (one root `.oxlintrc.json`, run once for the whole repo);
+add a nested `.oxlintrc.json` with `"extends": ["../../.oxlintrc.json"]` only when the
+member needs different rules, and `lint` / `lint:fix` scripts only for extra member-specific
+checks — `pnpm -r run --if-present lint` picks them up.
 
 A Python package:
 
@@ -128,8 +133,8 @@ lockfile and virtual environment.
 
 ## Git Hooks
 
-- `pre-commit` runs lint-staged: ESLint on staged TypeScript, Ruff on staged Python, plus
-  Prettier and AutoCorrect on all staged files.
+- `pre-commit` runs lint-staged: Oxlint + Oxfmt on staged JS/TS, Ruff on staged Python,
+  Prettier on staged docs/config files, plus AutoCorrect on all staged files.
 - `pre-push` runs Git LFS, so `git-lfs` must be installed.
 
 The hooks need pnpm, uv, and AutoCorrect on PATH. If a GUI Git client doesn't load your

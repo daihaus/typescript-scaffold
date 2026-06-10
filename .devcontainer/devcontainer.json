@@ -61,9 +61,9 @@
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
         "charliermarsh.ruff",
-        "dbaeumer.vscode-eslint",
         // "eg2.vscode-npm-script",
         "esbenp.prettier-vscode",
+        "oxc.oxc-vscode",
         // "GitHub.copilot",
         "huacnlee.autocorrect",
         "ms-playwright.playwright",

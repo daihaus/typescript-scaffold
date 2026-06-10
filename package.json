@@ -4,23 +4,22 @@
     "node": ">=22.22.1"
   },
   "scripts": {
-    "format": "prettier --write --ignore-unknown --log-level=warn . && uv run --locked ruff format . && autocorrect --fix .",
+    "format": "oxfmt && prettier --write --ignore-unknown --log-level=warn --no-error-on-unmatched-pattern \"**/*.{md,mdx,markdown,json,jsonc,json5,yaml,yml,html,htm,css,scss,less,vue,graphql,gql,hbs,handlebars}\" && uv run --locked ruff format . && autocorrect --fix .",
     "lint": "pnpm run lint:js && pnpm run lint:py && pnpm run lint:text",
-    "lint:js": "eslint . --no-error-on-unmatched-pattern && pnpm -r run --if-present lint && prettier --check --ignore-unknown .",
+    "lint:js": "oxlint && pnpm -r run --if-present lint && oxfmt --check && prettier --check --ignore-unknown --no-error-on-unmatched-pattern \"**/*.{md,mdx,markdown,json,jsonc,json5,yaml,yml,html,htm,css,scss,less,vue,graphql,gql,hbs,handlebars}\"",
     "lint:py": "uv run --locked ruff check . && uv run --locked ruff format --check .",
     "lint:text": "autocorrect --lint .",
     "lint:staged": "lint-staged --concurrent false",
-    "lint:fix": "eslint . --no-error-on-unmatched-pattern --fix && pnpm -r run --if-present lint:fix && uv run --locked ruff check --fix . && pnpm run format",
+    "lint:fix": "oxlint --fix && pnpm -r run --if-present lint:fix && uv run --locked ruff check --fix . && pnpm run format",
     "prepare": "husky"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "eslint": "^10.4.1",
-    "globals": "^17.6.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.7",
+    "oxfmt": "^0.54.0",
+    "oxlint": "^1.69.0",
+    "oxlint-tsgolint": "^0.23.0",
     "prettier": "^3.8.4",
-    "typescript": "~6.0.3",
-    "typescript-eslint": "^8.61.0"
+    "typescript": "^6.0.3"
   }
 }
