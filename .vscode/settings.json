@@ -11,7 +11,16 @@
   "files.associations": {
     "*.mdx": "mdx"
   },
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "ruff.importStrategy": "fromEnvironment",
   "ruff.nativeServer": "on",
+  "search.exclude": {
+    "**/.venv": true,
+    "**/node_modules": true,
+    "**/pnpm-lock.yaml": true,
+    "**/uv.lock": true
+  },
   "[markdown][mdx]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2
@@ -20,11 +29,14 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript][typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.tabSize": 4
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
   }
 }
