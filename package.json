@@ -4,13 +4,13 @@
     "node": ">=22.22.1"
   },
   "scripts": {
-    "format": "prettier --write --ignore-unknown --log-level=warn . && uv run ruff format . && autocorrect --fix .",
+    "format": "prettier --write --ignore-unknown --log-level=warn . && uv run --locked ruff format . && autocorrect --fix .",
     "lint": "pnpm run lint:js && pnpm run lint:py && pnpm run lint:text",
     "lint:js": "eslint . --no-error-on-unmatched-pattern && pnpm -r run --if-present lint && prettier --check --ignore-unknown .",
-    "lint:py": "uv run ruff check . && uv run ruff format --check .",
+    "lint:py": "uv run --locked ruff check . && uv run --locked ruff format --check .",
     "lint:text": "autocorrect --lint .",
     "lint:staged": "lint-staged --concurrent false",
-    "lint:fix": "eslint . --no-error-on-unmatched-pattern --fix && pnpm -r run --if-present lint:fix && uv run ruff check --fix . && pnpm run format",
+    "lint:fix": "eslint . --no-error-on-unmatched-pattern --fix && pnpm -r run --if-present lint:fix && uv run --locked ruff check --fix . && pnpm run format",
     "prepare": "husky"
   },
   "devDependencies": {
